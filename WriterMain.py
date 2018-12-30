@@ -42,6 +42,11 @@ def RuneWritter(word):
 					result = result + afterResult
 
 				return result
+		#If no characters fit the syllable combos the next charcter is added to the result
+		result = [word[0]]
+		afterStr = word[1:]
+		result = result + RuneWritter(afterStr)
+		return result
 
 	if len(word) == 1:
 		return [word]
@@ -50,7 +55,6 @@ def RuneWritter(word):
 def RuneWriterMain(id, word):
 	currentDir = Path().absolute().joinpath("Letters")
 	revSyllables = getAllSyllables( ["a","e","i","o","u"], ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"] )
-
 	# Size is in x,y format
 	runeSizes = {
 					1:[{"size":[204,306],"position":[0,0]}],
@@ -60,11 +64,12 @@ def RuneWriterMain(id, word):
 					5:[{"size":[136,102],"position":[0,0]}, {"size":[68 ,204],"position":[0,102]}, {"size":[68 ,204],"position":[68,102]}, {"size":[68 ,153],"position":[136,0]}, {"size":[68 ,153],"position":[136,153]}]
 	}
 
+	#start processing
 	word = word.lower()
 
 	wordSyllables = RuneWritter(word)
 
-	# print(wordSyllables)
+	# get all relevant letters
 	runes = []
 	for s in wordSyllables:
 		if s in revSyllables:
@@ -76,8 +81,9 @@ def RuneWriterMain(id, word):
 			tempImage = Image.open(currentDir.joinpath(s.upper()+".png"))
 			runes.append(tempImage)
 
-	print(runes)
+	#Make new image
 	result = Image.new('RGBA', (204,306), (0,0,0,0))
+	#If letters fit in a template use a prexisting template
 	if len(runes) <= 5:
 		for index in range(0,len(runes)):
 			tempImage = runes[index].copy()
@@ -85,7 +91,7 @@ def RuneWriterMain(id, word):
 			size = runeSizes[len(runes)][index]["size"]
 			tempImage = tempImage.resize(size)
 			result.paste(tempImage, position)
-		result.save("1.png")
+		result.save(str(id)+".png")
 
 
 
@@ -104,3 +110,5 @@ def getAllSyllables(consonants, vowels):
 
 
 RuneWriterMain(1,"Creation")
+RuneWriterMain(2,"fucking")
+RuneWriterMain(3,"rules")
