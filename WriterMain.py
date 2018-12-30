@@ -1,6 +1,8 @@
 from PIL import Image
 import os
 import inspect
+from pathlib import Path
+
 
 def RuneWritter(word):
 	letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -46,10 +48,8 @@ def RuneWritter(word):
 
 
 def RuneWriterMain(id, word):
-	currentDir = os.path.dirname(os.path.abspath(__file__))
-	letterDir = "/Letters/"
-	absDir = os.path.join(currentDir, letterDir)
-	print(absDir)
+	currentDir = Path().absolute().joinpath("Letters")
+	revSyllables = getAllSyllables( ["a","e","i","o","u"], ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"] )
 
 	word = word.lower()
 
@@ -58,7 +58,9 @@ def RuneWriterMain(id, word):
 	print(wordSyllables)
 
 	for s in wordSyllables:
-		test = Image.open(absDir+s.upper()+".png")
+		if s in revSyllables:
+			s=s[::-1]
+		test = Image.open(currentDir.joinpath(s.upper()+".png"))
 
 
 
