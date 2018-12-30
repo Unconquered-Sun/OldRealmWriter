@@ -54,9 +54,9 @@ def RuneWriterMain(id, word):
 	# Size is in x,y format
 	runeSizes = {
 					1:[{"size":[204,306],"position":[0,0]}],
-					2:[{"size":[204,153],"position":[0,0]}, {"size":[204,153],"position":[0,153]}]
-					3:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[102,0]}, {"size":[204,204],"position":[0,102]}]
-					4:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[0,102]}, {"size":[102,102],"position":[102,0]}, {"size":[102,102],"position":[102,102]}]
+					2:[{"size":[204,153],"position":[0,0]}, {"size":[204,153],"position":[0,153]}],
+					3:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[102,0]}, {"size":[204,204],"position":[0,102]}],
+					4:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[0,102]}, {"size":[102,102],"position":[102,0]}, {"size":[102,102],"position":[102,102]}],
 					5:[{"size":[136, 68],"position":[0,0]}, {"size":[68 ,136],"position":[0, 68]}, {"size":[68 ,136],"position":[68,68]}, {"size":[68 ,153],"position":[136,0]}, {"size":[68 ,153],"position":[136,153]}]
 	}
 
@@ -77,9 +77,17 @@ def RuneWriterMain(id, word):
 			runes.append(tempImage)
 
 	print(runes)
+	result = Image.new('RGBA', (204,306), (0,0,0,0))
 	if len(runes) <= 5:
 		for index in range(0,len(runes)):
-			
+			tempImage = runes[index].copy()
+			position = runeSizes[len(runes)][index]["position"]
+			size = runeSizes[len(runes)][index]["size"]
+			tempImage = tempImage.resize(size)
+			result.paste(tempImage, position)
+		result.save("1.png")
+
+
 
 
 
