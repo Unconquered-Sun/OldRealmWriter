@@ -57,7 +57,7 @@ def RuneWriterMain(id, word):
 					2:[{"size":[204,153],"position":[0,0]}, {"size":[204,153],"position":[0,153]}],
 					3:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[102,0]}, {"size":[204,204],"position":[0,102]}],
 					4:[{"size":[102,102],"position":[0,0]}, {"size":[102,102],"position":[0,102]}, {"size":[102,102],"position":[102,0]}, {"size":[102,102],"position":[102,102]}],
-					5:[{"size":[136, 68],"position":[0,0]}, {"size":[68 ,136],"position":[0, 68]}, {"size":[68 ,136],"position":[68,68]}, {"size":[68 ,153],"position":[136,0]}, {"size":[68 ,153],"position":[136,153]}]
+					5:[{"size":[136,102],"position":[0,0]}, {"size":[68 ,204],"position":[0,102]}, {"size":[68 ,204],"position":[68,102]}, {"size":[68 ,153],"position":[136,0]}, {"size":[68 ,153],"position":[136,153]}]
 	}
 
 	word = word.lower()
