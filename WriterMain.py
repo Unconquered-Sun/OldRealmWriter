@@ -1,7 +1,6 @@
 from PIL import Image
-import os
-import inspect
 from pathlib import Path
+import math
 
 
 def RuneWritter(word):
@@ -45,7 +44,8 @@ def RuneWritter(word):
 		#If no characters fit the syllable combos the next charcter is added to the result
 		result = [word[0]]
 		afterStr = word[1:]
-		result = result + RuneWritter(afterStr)
+		if afterStr != "":
+			result = result + RuneWritter(afterStr)
 		return result
 
 	if len(word) == 1:
@@ -92,9 +92,58 @@ def RuneWriterMain(id, word):
 			tempImage = tempImage.resize(size)
 			result.paste(tempImage, position)
 		result.save(str(id)+".png")
+	else:
+		rows = math.ceil( len(runes)/2 )
+		odd = False
+		if len(runes)%2 == 1:
+			odd = True
+		height = math.floor( 306/rows )
+		width = 102
 
+		#left rows
+		current_row = 1
+		index = 0
+		x = 0
+		y = 0
+		while current_row <= rows:
+			tempImage = runes[index].copy()
+			position = (x,y)
+			size = (width, height)
+			tempImage = tempImage.resize(size)
+			result.paste(tempImage, position)
+			y=y+height
 
+			current_row+=1
+			index+=1
 
+			if current_row == rows and odd == True:
+				break
+
+		
+		x=102
+		y=0
+		current_row=1
+
+		while current_row <= rows:
+			tempImage = runes[index].copy()
+			position = (x,y)
+			size = (width, height)
+			tempImage = tempImage.resize(size)
+			result.paste(tempImage, position)
+			y=y+height
+
+			current_row+=1
+			index+=1
+
+			if current_row == rows and odd == True:
+				tempImage = runes[index].copy()
+				position = (0,y)
+				size = (204, height)
+				tempImage = tempImage.resize(size)
+				result.paste(tempImage, position)
+				current_row+=1
+		result.save(str(id)+".png")	
+				
 
 
 
@@ -112,3 +161,4 @@ def getAllSyllables(consonants, vowels):
 RuneWriterMain(1,"Creation")
 RuneWriterMain(2,"fucking")
 RuneWriterMain(3,"rules")
+RuneWriterMain(4,"supercalafragalistic")
