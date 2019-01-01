@@ -1,0 +1,17 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html>
+<head>
+	<script defer src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+	<script defer src="{%static "oldrealmwriter/runes.js"%}"></script>
+	<title></title>
+</head>
+<body>
+	<div id="django-data" data-CSRF="{{csrf_token}}"/>
+	<input type="text" id="runeText" />
+	<input type="button" value="Go" id="runeButton" />
+	
+	<dir id='runeDir'></dir>
+</body>
+</html>
