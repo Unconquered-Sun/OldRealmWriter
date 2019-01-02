@@ -53,7 +53,7 @@ class Main(View):
 				buffer = BytesIO()
 				rune.save(buffer,format="PNG")
 				runeimage = buffer.getvalue()
-				runeHex = str(base64.b64encode(runeimage))
+				runeHex = str(base64.b64encode(runeimage))[2:-1]
 				# print(runeHex,"\n")
 				runes.append(runeHex)
 				
@@ -63,7 +63,7 @@ class Main(View):
 				buffer = BytesIO()
 				rune.save(buffer,format="PNG")
 				runeimage = buffer.getvalue()
-				runeHex = str(base64.b64encode(runeimage))
+				runeHex = str(base64.b64encode(runeimage))[2:-1]
 				# print(runeHex,"\n")
 				runes.append(runeHex)
 

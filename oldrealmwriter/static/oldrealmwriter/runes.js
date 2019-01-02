@@ -28,6 +28,12 @@ $(document).ready(function(){
 			success: function(data){
 				runeJson = jQuery.parseJSON(data)
 				console.log(runeJson)
+				for (var index in runeJson["images"] ){
+					// var image = new Image()
+					// image.src() = 'data:image/png;base64,'+runeJson["images"][index]
+					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" />'
+					$("#runeDir").append(imageHtml)
+				}
 			},
 			error: function(request, textStatus, errorThrown){
 				console.log('textStatus ' + textStatus);
