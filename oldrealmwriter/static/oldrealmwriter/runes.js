@@ -28,6 +28,7 @@ $(document).ready(function(){
 			success: function(data){
 				runeJson = jQuery.parseJSON(data)
 				console.log(runeJson)
+				$("#runeDir").html("");
 				for (var index in runeJson["images"] ){
 					// var image = new Image()
 					// image.src() = 'data:image/png;base64,'+runeJson["images"][index]
