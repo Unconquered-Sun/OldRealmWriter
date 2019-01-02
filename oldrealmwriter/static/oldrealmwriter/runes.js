@@ -26,7 +26,8 @@ $(document).ready(function(){
 			type:"POST",
 			data:{"runeInput":words, csrfmiddlewaretoken:csrftoken},
 			success: function(data){
-				console.log(data)
+				runeJson = jQuery.parseJSON(data)
+				console.log(runeJson)
 			},
 			error: function(request, textStatus, errorThrown){
 				console.log('textStatus ' + textStatus);

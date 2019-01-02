@@ -8,6 +8,9 @@ from .models import old_realm_runes
 from PIL import Image
 from pathlib import Path
 import math
+import base64
+from io import BytesIO 
+import json
 
 # Create your views here.
 class Main(View):
@@ -37,6 +40,7 @@ class Main(View):
 		for word in cleanedWords:
 			if word != "":
 				finalWords.append(word) 
+
 		#4th process each word and store it
 		runes = []
 		for word in finalWords:
@@ -44,13 +48,28 @@ class Main(View):
 			results = old_realm_runes.objects.filter(word=word)
 			if results != []:
 				rune = RuneWriterMain(word)
-				runes.append(rune)
 				new_rune = old_realm_runes(word=word, image=rune.tobytes())
+
+				buffer = BytesIO()
+				rune.save(buffer,format="PNG")
+				runeimage = buffer.getvalue()
+				runeHex = str(base64.b64encode(runeimage))
+				# print(runeHex,"\n")
+				runes.append(runeHex)
+				
 			else:
 				rune = PIL.Image.frombytes('RGBA', (204,306), results[0].image, decoder_name='raw')
-				runes.append(rune)
-		print(runes)
-		return HttpResponse('/thanks/')
+				
+				buffer = BytesIO()
+				rune.save(buffer,format="PNG")
+				runeimage = buffer.getvalue()
+				runeHex = str(base64.b64encode(runeimage))
+				# print(runeHex,"\n")
+				runes.append(runeHex)
+
+		output = json.dumps({"images":runes})
+		# print(output)
+		return JsonResponse(output,safe=False)
 		# return render(request, "oldrealmwriter/home.html")
 
 
