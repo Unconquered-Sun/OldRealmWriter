@@ -15,22 +15,16 @@ $(document).ready(function(){
 		return cookieValue;
 	}
 	var csrftoken = getCookie('csrftoken');
-	function csrfSafeMethod(method) {
-		// these HTTP methods do not require CSRF protection
-		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-	}
-	$.ajaxSetup({
-    data: {csrfmiddlewaretoken: csrftoken },
-	});
+
 
 
 	var csrf_token = $("#django-data").data().CSRF;
 	function writeRunes(){
-		console.log("TEST2")
+		words = $("#runeText").val();
 		$.ajax({
 			url:"/home/",
 			type:"POST",
-			data:{},
+			data:{"runeInput":words, csrfmiddlewaretoken:csrftoken},
 			success: function(data){
 				console.log(data)
 			},
@@ -40,6 +34,5 @@ $(document).ready(function(){
 			}
 		})
 	}
-	console.log("TEST1");
 	$("#runeButton").click(writeRunes);
 });
