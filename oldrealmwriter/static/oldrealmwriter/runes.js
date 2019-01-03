@@ -16,9 +16,6 @@ $(document).ready(function(){
 	}
 	var csrftoken = getCookie('csrftoken');
 
-
-
-	var csrf_token = $("#django-data").data().CSRF;
 	function writeRunes(){
 		words = $("#runeText").val();
 		$.ajax({
@@ -32,8 +29,9 @@ $(document).ready(function(){
 				for (var index in runeJson["images"] ){
 					// var image = new Image()
 					// image.src() = 'data:image/png;base64,'+runeJson["images"][index]
-					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" />'
+					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" id="rune'+index+'"/>'
 					$("#runeDir").append(imageHtml)
+					$("#rune"+index).css("width","100px").css("height","150px")
 				}
 			},
 			error: function(request, textStatus, errorThrown){
