@@ -1,0 +1,6 @@
+django
+gunicorn
+django-heroku
+Pillow
+psycopg2
+pytz
