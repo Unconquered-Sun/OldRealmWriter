@@ -33,6 +33,7 @@ $(document).ready(function(){
 				tableCount = Math.ceil(runeCount/6);
 				for (var x=0; x<tableCount; x++){
 					$("#runeDir").append('<table id="runeTable'+x+'"></table>');
+					$("#runeTable"+x).css("float","left").css("padding-right","5%")
 					ids = [];
 					for (var y = 0; y < 6; y++){
 						newId = y+(x*6);
