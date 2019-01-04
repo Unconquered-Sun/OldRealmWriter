@@ -26,11 +26,28 @@ $(document).ready(function(){
 				runeJson = jQuery.parseJSON(data)
 				console.log(runeJson)
 				$("#runeDir").html("");
+				
+				// Create Table for Runes . Each table can hold 6 runes
+				runeCount = runeJson["images"].length;
+				//Determine number of tables 
+				tableCount = Math.ceil(runeCount/6);
+				for (var x=0; x<tableCount; x++){
+					$("#runeDir").append('<table id="runeTable'+x+'"></table>');
+					ids = [];
+					for (var y = 0; y < 6; y++){
+						newId = y+(x*6);
+						ids.push(newId);
+					};
+					$("#runeTable"+x).append('<tr><td id="runeCell'+ids[0]+'"></td><td id="runeCell'+ids[1]+'"></td></tr>');
+					$("#runeTable"+x).append('<tr><td id="runeCell'+ids[2]+'"></td><td id="runeCell'+ids[3]+'"></td></tr>');
+					$("#runeTable"+x).append('<tr><td id="runeCell'+ids[4]+'"></td><td id="runeCell'+ids[5]+'"></td></tr>');
+				}
+
 				for (var index in runeJson["images"] ){
 					// var image = new Image()
 					// image.src() = 'data:image/png;base64,'+runeJson["images"][index]
 					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" id="rune'+index+'"/>'
-					$("#runeDir").append(imageHtml)
+					$("#runeCell"+index).append(imageHtml)
 					$("#rune"+index).css("width","100px").css("height","150px")
 				}
 			},
