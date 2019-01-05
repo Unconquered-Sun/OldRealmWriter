@@ -47,7 +47,7 @@ $(document).ready(function(){
 				for (var index in runeJson["images"] ){
 					// var image = new Image()
 					// image.src() = 'data:image/png;base64,'+runeJson["images"][index]
-					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" id="rune'+index+'"/>'
+					imageHtml = '<img src="data:image/png;base64,'+runeJson["images"][index]+'" id="rune'+index+'" title="'+runeJson["syllables"][index]+'"/>'
 					$("#runeCell"+index).append(imageHtml)
 					$("#rune"+index).css("width","100px").css("height","150px")
 				}

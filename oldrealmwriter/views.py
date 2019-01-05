@@ -71,7 +71,13 @@ class Main(View):
 				# print(runeHex,"\n")
 				runes.append(runeHex)
 
-		output = json.dumps({"images":runes})
+		#5th get the syllabls of each word in a neat string for hover over text
+		wordSyllables = []
+		for word in finalWords:
+			tempSyllables = RuneWritter(word)
+			wordSyllables.append( "-".join(tempSyllables) )
+
+		output = json.dumps({"images":runes,"syllables":wordSyllables})
 		# print(output)
 		return JsonResponse(output,safe=False)
 		# return render(request, "oldrealmwriter/home.html")
