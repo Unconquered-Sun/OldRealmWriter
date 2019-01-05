@@ -2,14 +2,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="{% static "oldrealmwriter/translator.css" %}">
 	<script defer src="{%static "oldrealmwriter/jquery211min.js"%}"></script>
 	
 	<script defer src="{%static "oldrealmwriter/runes.js"%}"></script>
-	<title></title>
+	<title>Old Realm Translator</title>
 </head>
 <body>
-	<input type="text" id="runeText" />
-	<input type="button" value="Go" id="runeButton" />
+	<ul>
+		<li><a class="active" href="/">Translator</a></li>
+		<li><a href="/about">About</a></li>
+	</ul>
+	<br>
+	<hr>
+	<br/>
+	<div id="runeInput">
+		<input type="text" id="runeText" />
+		<input type="button" value="Go" id="runeButton" />
+	</div>
+	<br/>
+	<hr>
+	<br>
 	
 	<dir id='runeDir'></dir>
 </body>

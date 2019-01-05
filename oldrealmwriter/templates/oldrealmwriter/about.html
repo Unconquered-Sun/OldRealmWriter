@@ -1,0 +1,110 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{% static "oldrealmwriter/translator.css" %}">
+	<title>About the Old Realm Translator</title>
+</head>
+<body>
+	<ul>
+		<li><a href="/">Translator</a></li>
+		<li><a class="active" href="/about">About</a></li>
+	</ul>
+	<br>
+	<hr>
+	<br/>
+	<div id="mainTables">
+		<p>
+			Below is an alphabet of almost all runes used in the Old Realm Translator. The only runes not shown are the reversed runes like "LA", "LE", "LI", ect. These are the same as their normal runes just flipped horizontally and vertically.
+		</p>
+		<br><hr><br>
+		<table id="alphabet" border="1">
+			<tr>
+				<td>A</td>
+				<td>B</td>
+				<td>C</td>
+				<td>D</td>
+				<td>E</td>
+				<td>F</td>
+				<td>G</td>
+				<td>H</td>
+				<td>I</td>
+				<td>J</td>
+				<td>K</td>
+				<td>L</td>
+				<td>M</td>
+				<td>N</td>
+				<td>O</td>
+				<td>P</td>
+				<td>Q</td>
+				<td>R</td>
+				<td>S</td>
+				<td>T</td>
+				<td>U</td>
+				<td>V</td>
+				<td>W</td>
+				<td>X</td>
+				<td>Y</td>
+				<td>Z</td>
+			</tr>
+			<tr>
+				<td><img src="{% static "oldrealmwriter/Letters/A.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/B.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/C.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/D.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/E.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/F.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/G.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/H.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/I.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/J.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/K.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/L.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/M.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/N.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/O.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/P.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/Q.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/R.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/S.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/T.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/U.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/V.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/W.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/X.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/Y.png" %}" height="51px" width="51px" ></td>
+				<td><img src="{% static "oldrealmwriter/Letters/Z.png" %}" height="51px" width="51px" ></td>
+			</tr>
+		</table>
+		{% for letter in syllables %}
+		<br>
+		<table id="{{letter}}Runes" border="1">
+			<tr>
+				<td>{{letter}}A</td>
+				<td>{{letter}}E</td>
+				<td>{{letter}}I</td>
+				<td>{{letter}}O</td>
+				<td>{{letter}}U</td>
+			</tr>
+			<tr>
+				{% with 'oldrealmwriter/Letters/'|add:letter|add:'A.png' as image_static %}
+				<td><img src='{% static image_static %}' height="51px" width="51px" ></td>
+				{% endwith %}
+				{% with 'oldrealmwriter/Letters/'|add:letter|add:'E.png' as image_static %}
+				<td><img src='{% static image_static %}' height="51px" width="51px" ></td>
+				{% endwith %}
+				{% with 'oldrealmwriter/Letters/'|add:letter|add:'I.png' as image_static %}
+				<td><img src='{% static image_static %}' height="51px" width="51px" ></td>
+				{% endwith %}
+				{% with 'oldrealmwriter/Letters/'|add:letter|add:'O.png' as image_static %}
+				<td><img src='{% static image_static %}' height="51px" width="51px" ></td>
+				{% endwith %}
+				{% with 'oldrealmwriter/Letters/'|add:letter|add:'U.png' as image_static %}
+				<td><img src='{% static image_static %}' height="51px" width="51px" ></td>
+				{% endwith %}
+			</tr>
+		</table>
+		{% endfor %}
+	</div>
+</body>
+</html>

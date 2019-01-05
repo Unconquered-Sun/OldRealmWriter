@@ -12,6 +12,10 @@ import base64
 from io import BytesIO 
 import json
 
+class About(View):
+	def get(self,request):
+		return render(request, "oldrealmwriter/about.html", {"syllables":["B","C","CH","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Y","Z"]})
+
 # Create your views here.
 class Main(View):
 
