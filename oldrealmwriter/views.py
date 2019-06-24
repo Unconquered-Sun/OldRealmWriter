@@ -9,7 +9,7 @@ from PIL import Image
 from pathlib import Path
 import math
 import base64
-from io import BytesIO 
+from io import BytesIO
 import json
 
 class About(View):
