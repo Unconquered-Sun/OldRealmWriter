@@ -1,3 +1,5 @@
 # Ignore the Venv Folder
 venv/
 
+#ignore secret.py
+secret.py
